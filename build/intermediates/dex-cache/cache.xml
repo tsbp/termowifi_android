@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="E:\Work\Android\termowifi_android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_9387f33f2f95d8a7d8ea4908cf3aaffd673545f5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Work\Android\termowifi_android\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_fda6ad5ba4cd35565bbb8a8dcad21e1d9e3aea66.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Work\Android\termowifi_android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="3b5dbab737b1d77185437c26d9c4fbbcc72c264e">
+        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\instant-run_8271755ef94e6fe10432cc804893d8f47c5f3849.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Work\Android\termowifi_android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="17750960be610de4da521c54aaa97c541b1a8396">
+        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_6597decaa69aa880334cbb06396ebaee3eab9ab4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Work\Android\termowifi_android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_301ef184b10ce306a0422bd1b8730963f62e6a85.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Install\Android\SDK\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_695244409b87085b417c3cac61d3533f288e2da1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Work\Android\termowifi_android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_545ca030114a71663f4218f8afaf568815e44e54.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Work\Android\termowifi_android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.4.0_f31383a28cacdda46f63649957a9f302fa754068.jar" />
+    </item>
+
+</items>

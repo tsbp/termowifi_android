@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/mainbackground"
+    tools:context="com.voodoo.termowifi.MainActivity">
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/setbtn"
+        android:background="@drawable/setbutton"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/updtbtn"
+        android:visibility="invisible"
+        android:background="@drawable/update"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:id="@+id/espbtn"
+        android:background="@drawable/inpogress"
+        android:layout_alignTop="@+id/updtbtn"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+        android:id="@+id/inTemp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textIsSelectable="false"
+        android:textSize="50dp"
+        android:background="@drawable/inpic" />
+
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+        android:id="@+id/outTemp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textIsSelectable="false"
+        android:textSize="50dp"
+        android:background="@drawable/outpic" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:id="@+id/response"
+        android:gravity="center"
+        android:layout_above="@+id/setbtn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="false" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_alignTop="@+id/updtbtn"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/inTemp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/response">
+
+        <com.voodoo.termowifi.plot
+            android:id="@+id/inCanvas"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1" />
+
+        <com.voodoo.termowifi.plot
+            android:id="@+id/outCanvas"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:indeterminate="false"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</RelativeLayout>
