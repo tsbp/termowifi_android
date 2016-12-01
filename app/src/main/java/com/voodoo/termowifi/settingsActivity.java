@@ -169,39 +169,92 @@ public class settingsActivity extends Activity implements UDPProcessor.OnReceive
         bHyst.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 curMode = cMode.mHyst;
-//                Intent intent = new Intent(settingsActivity.this, ustanovki.class);
-//                startActivity(intent);
-                 ShowDialog();
-
+                udpRequestBuf = new byte[1];
+                udpRequestBuf[0] = Protocol.READ_USTANOVKI;
+                udpRequest(udpRequestBuf);
             }
         });
     }
-    public void ShowDialog()
+    //==============================================================================================
+    public void Dialog_period()
+    {
+        final AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
+        final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View Viewlayout = inflater.inflate(R.layout.activity_peroid_config, (ViewGroup) findViewById(R.id.rl));
+
+        final TextView pTime = (TextView)Viewlayout.findViewById(R.id.setTime);
+        pTime.setText(time[selectedRow]);
+        final TextView pTemp = (TextView)Viewlayout.findViewById(R.id.setTemp);
+        pTemp.setText(temp[selectedRow]);
+
+        popDialog.setIcon(android.R.drawable.btn_star);
+        popDialog.setTitle("Установка периода");
+        popDialog.setView(Viewlayout);
+
+        SeekBar seek = (SeekBar) Viewlayout.findViewById(R.id.seekBarTemp);
+        //seek.setProgress(deltaValue);
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+                String s = String.format("%2.1f", (0.1 * progress + 19));
+                s = s.replace(',','.');
+                pTemp.setText( s );
+                bSave.setVisibility(View.VISIBLE);
+            }
+            public void onStartTrackingTouch(SeekBar arg0) {
+            }
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+        popDialog.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                });
+        popDialog.create();
+        popDialog.show();
+    }
+    //==============================================================================================
+    public void Dialog_delta()
     {
         final AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View Viewlayout = inflater.inflate(R.layout.ustanovki, (ViewGroup) findViewById(R.id.layout_ust));
-
-        SeekBar seek = (SeekBar) findViewById(R.id.seekBar);
         delta = (TextView)(findViewById(R.id.delta_value));
         popDialog.setIcon(android.R.drawable.btn_star);
-        popDialog.setTitle("Delta");
+        popDialog.setTitle("Дельта");
         popDialog.setView(Viewlayout);
-//        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-//                   //delta.setText(progress);
-//            }
-//            public void onStartTrackingTouch(SeekBar arg0) {
-//            }
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//            }
-//        });
-//        popDialog.setPositiveButton("OK",
-//        new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.dismiss();
-//            }
-//        });
+
+        final TextView delta = (TextView)Viewlayout.findViewById(R.id.delta_value);
+
+        SeekBar seek = (SeekBar) Viewlayout.findViewById(R.id.seekBar);
+        seek.setProgress(deltaValue);
+        delta.setText(String.format("%2.1f", (0.025 * deltaValue)));
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+                String s = String.format("%2.1f", (0.025 * progress));
+                s = s.replace(',','.');
+                delta.setText( s );
+            }
+            public void onStartTrackingTouch(SeekBar arg0) {
+            }
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+        popDialog.setPositiveButton("OK",
+        new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                udpRequestBuf = new byte[3];
+                udpRequestBuf[0] = Protocol.SAVE_USTANOVKI;
+                udpRequestBuf[1] = Byte.valueOf(delta.getText().toString().replace(".",""));
+//                if(swap.isChecked())REQUEST_ACTION[2] = 1;
+//                else                REQUEST_ACTION[2] = 0;
+                udpRequest(udpRequestBuf);
+                pb.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+            }
+        });
         popDialog.create();
         popDialog.show();
     }
@@ -289,22 +342,8 @@ public class settingsActivity extends Activity implements UDPProcessor.OnReceive
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
                     selectedRow = position;
-                    bSave.setVisibility(View.VISIBLE);
-                    Intent intent = new Intent(settingsActivity.this, PeroidConfig.class);
-                    intent.putExtra("pTime", time[position]);
-                    intent.putExtra("pTemp", temp[position]);
-                    startActivityForResult(intent, 1);
-
-//                    Context mContext = getApplicationContext();
-//                    LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-//                    View customView = inflater.inflate(R.layout.activity_peroid_config,null);
-//
-//                    PopupWindow mPopupWindow = new PopupWindow(
-//                            customView,
-//                            RelativeLayout.LayoutParams.WRAP_CONTENT,
-//                            RelativeLayout.LayoutParams.WRAP_CONTENT
-//                    );
-//                    mPopupWindow.showAtLocation((RelativeLayout) findViewById(R.id.rl), Gravity.CENTER,0,0);
+                   // bSave.setVisibility(View.VISIBLE);
+                    Dialog_period();
                 }
             });
             //==========================================================
@@ -407,11 +446,17 @@ public class settingsActivity extends Activity implements UDPProcessor.OnReceive
     }
     //==============================================================================================
     String weekString = "";
+    int deltaValue;
     //==============================================================================================
     public void onFrameReceived(InetAddress ip, IDataFrame frame)
     {
         byte[] in = frame.getFrameData();
         switch (in[0]) {
+
+            case Protocol.READ_USTANOVKI_ANS:
+                deltaValue = in[1] * 4;
+                Dialog_delta();
+                break;
 
             case Protocol.READ_WEEK_CONFIGS_ANS:
                 weekString = new String(in).substring(1,8);
@@ -464,6 +509,8 @@ public class settingsActivity extends Activity implements UDPProcessor.OnReceive
             case Protocol.OK_ANS:
                 switch (curMode)
                 {
+
+                    case mHyst:
                     case mWeek:
                         pb.setVisibility(View.INVISIBLE);
                         bSave.setVisibility(View.INVISIBLE);

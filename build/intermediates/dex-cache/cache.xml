@@ -21,33 +21,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="E:\Work\Android\termowifi_android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="3b5dbab737b1d77185437c26d9c4fbbcc72c264e">
-        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\instant-run_8271755ef94e6fe10432cc804893d8f47c5f3849.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\Work\Android\termowifi_android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="17750960be610de4da521c54aaa97c541b1a8396">
-        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_6597decaa69aa880334cbb06396ebaee3eab9ab4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\Work\Android\termowifi_android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_301ef184b10ce306a0422bd1b8730963f62e6a85.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="E:\Install\Android\SDK\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
         jumboMode="true"
         optimize="true"
@@ -63,6 +36,33 @@
         revision="23.0.3"
         sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
         <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_545ca030114a71663f4218f8afaf568815e44e54.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Work\Android\termowifi_android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="61a9674efbe8942489fae094fd504e000c63940e">
+        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\instant-run_8271755ef94e6fe10432cc804893d8f47c5f3849.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Work\Android\termowifi_android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c7ce5f3c134ced1456eecf278878bf6babb5dcdd">
+        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_6597decaa69aa880334cbb06396ebaee3eab9ab4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Work\Android\termowifi_android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="E:\Work\Android\termowifi_android\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_301ef184b10ce306a0422bd1b8730963f62e6a85.jar" />
     </item>
     <item
         is-multidex="false"

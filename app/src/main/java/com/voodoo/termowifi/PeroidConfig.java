@@ -79,18 +79,18 @@ public class PeroidConfig extends Activity /*implements OnClickListener*/ {
             }
         });
 
-        Button okBtn = (Button) findViewById(R.id.okBtnPeriod);
-        okBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                Intent intent = new Intent();
-                intent.putExtra("rTime", etTime.getText().toString());
-                intent.putExtra("rTemp", etTemp.getText().toString());
-                setResult(RESULT_OK, intent);
-                finish();
-
-            }
-        });
+//        Button okBtn = (Button) findViewById(R.id.okBtnPeriod);
+//        okBtn.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//
+//                Intent intent = new Intent();
+//                intent.putExtra("rTime", etTime.getText().toString());
+//                intent.putExtra("rTemp", etTemp.getText().toString());
+//                setResult(RESULT_OK, intent);
+//                finish();
+//
+//            }
+//        });
     }
 
 

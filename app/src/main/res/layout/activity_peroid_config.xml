@@ -13,20 +13,17 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/timeHead"
-        android:gravity="center_vertical|center_horizontal"
-        android:layout_marginTop="50dp" />
+        android:gravity="center_vertical|center_horizontal"/>
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="time"
-        android:ems="10"
         android:id="@+id/setTime"
         android:layout_below="@+id/timeHead"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="50dp"
-        android:text="08:00"
+        android:textSize="40dp"
         android:gravity="center"
         android:textColor="#001aff">
         <requestFocus>
@@ -42,7 +39,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:gravity="center_vertical|center_horizontal"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -53,26 +50,28 @@
         android:layout_below="@+id/tempHead"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="50dp"
-        android:text="23.5"
+        android:textSize="40dp"
         android:gravity="center"
         android:textColor="#04741a" />
 
-    <Button
+    <!--Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="OK"
         android:id="@+id/okBtnPeriod"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"  />
+        android:layout_alignParentRight="true"  /-->
 
     <SeekBar
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/seekBar"
+        android:id="@+id/seekBarTemp"
         android:layout_below="@+id/setTemp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="0dp"/>
 
 
 </RelativeLayout>
