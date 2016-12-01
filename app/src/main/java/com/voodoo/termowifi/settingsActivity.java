@@ -2,6 +2,7 @@ package com.voodoo.termowifi;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,9 +22,11 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,7 +91,6 @@ public class settingsActivity extends Activity implements UDPProcessor.OnReceive
                 curMode = cMode.mWork;
                 pb.setVisibility(View.VISIBLE);
                 bSave.setVisibility(View.INVISIBLE);
-                bAdd.setVisibility(View.VISIBLE);
                 dayType.setText("Рабочий день");
                 getHolly = false;
                 requestDayCfg((byte)0x01);
@@ -100,7 +102,6 @@ public class settingsActivity extends Activity implements UDPProcessor.OnReceive
                 curMode = cMode.mHolly;
                 pb.setVisibility(View.VISIBLE);
                 bSave.setVisibility(View.INVISIBLE);
-                bAdd.setVisibility(View.VISIBLE);
                 dayType.setText("Выходной");
                 getHolly = true;
                 requestDayCfg((byte)0x81);
@@ -184,15 +185,34 @@ public class settingsActivity extends Activity implements UDPProcessor.OnReceive
 
         final TextView pTime = (TextView)Viewlayout.findViewById(R.id.setTime);
         pTime.setText(time[selectedRow]);
+        pTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bSave.setVisibility(View.VISIBLE);
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(settingsActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        pTime.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d",selectedMinute));
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+            }
+        });
+
         final TextView pTemp = (TextView)Viewlayout.findViewById(R.id.setTemp);
         pTemp.setText(temp[selectedRow]);
 
-        popDialog.setIcon(android.R.drawable.btn_star);
-        popDialog.setTitle("Установка периода");
+        popDialog.setIcon(R.drawable.timeicon2);
+        popDialog.setTitle("Период " + (selectedRow + 1));
         popDialog.setView(Viewlayout);
 
         SeekBar seek = (SeekBar) Viewlayout.findViewById(R.id.seekBarTemp);
-        //seek.setProgress(deltaValue);
+        seek.setProgress((int) (((Float.valueOf(pTemp.getText().toString())) - 19) * 10));
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
                 String s = String.format("%2.1f", (0.1 * progress + 19));
@@ -208,7 +228,10 @@ public class settingsActivity extends Activity implements UDPProcessor.OnReceive
         popDialog.setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-
+                        time[selectedRow] = pTime.getText().toString();
+                        temp[selectedRow] = pTemp.getText().toString();
+                        sortByTime();
+                        updateListviewTemperature();
                         dialog.dismiss();
                     }
                 });
@@ -222,7 +245,7 @@ public class settingsActivity extends Activity implements UDPProcessor.OnReceive
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View Viewlayout = inflater.inflate(R.layout.ustanovki, (ViewGroup) findViewById(R.id.layout_ust));
         delta = (TextView)(findViewById(R.id.delta_value));
-        popDialog.setIcon(android.R.drawable.btn_star);
+        popDialog.setIcon(R.drawable.plot2);
         popDialog.setTitle("Дельта");
         popDialog.setView(Viewlayout);
 
@@ -488,6 +511,7 @@ public class settingsActivity extends Activity implements UDPProcessor.OnReceive
 
                     updateListviewTemperature();
                     pb.setVisibility(View.INVISIBLE);
+                    bAdd.setVisibility(View.VISIBLE);
 
                     aStrings.clear();
                     bStrings.clear();
