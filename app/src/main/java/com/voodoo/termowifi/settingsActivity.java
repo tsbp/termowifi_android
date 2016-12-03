@@ -188,18 +188,20 @@ public class settingsActivity extends Activity implements UDPProcessor.OnReceive
         pTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bSave.setVisibility(View.VISIBLE);
                 Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
+                int hour = Integer.valueOf(time[selectedRow].substring(0,2));
+                int minute = Integer.valueOf(time[selectedRow].substring(3));
                 TimePickerDialog mTimePicker;
+
                 mTimePicker = new TimePickerDialog(settingsActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         pTime.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d",selectedMinute));
+                        bSave.setVisibility(View.VISIBLE);
                     }
                 }, hour, minute, true);//Yes 24 hour time
-                mTimePicker.setTitle("Select Time");
+                mTimePicker.setTitle("Начало периода");
+                mTimePicker.setIcon(R.drawable.timeicon2);
                 mTimePicker.show();
             }
         });
